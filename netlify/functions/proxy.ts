@@ -27,18 +27,18 @@ function respondJsonMessage(message) {
 export default async (request: Request, context: Context) => {
     try {
         const wxid = request.headers.get("wxid");
-        if (!wxid) {
-            throw new Error('未提供 wxid 头部信息');
-        }
+        // if (!wxid) {
+        //     throw new Error('未提供 wxid 头部信息');
+        // }
         const requestAuthorization = request.headers.get("authorization");
         const requestBody = await request.json();
         const requestModel = requestBody.model.toLowerCase().trim();
         const countryName = context.geo?.country?.name || "somewhere in the world";
 
         // 判断 wxidArray 是否为空，如果为空则不进行授权验证，直接执行后续程序
-        if (wxidArray.length > 0 && !wxidArray.includes(wxid)) {
-            return respondJsonMessage('我是狗，偷接口，偷了接口当小丑～');
-        }
+        // if (wxidArray.length > 0 && !wxidArray.includes(wxid)) {
+        //     return respondJsonMessage('我是狗，偷接口，偷了接口当小丑～');
+        // }
 
         let response;
         if (requestModel === 'gpt-3.5-turbo' || requestModel === 'gpt-4') {
